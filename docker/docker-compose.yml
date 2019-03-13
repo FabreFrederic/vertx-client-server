@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  backend:
+    env_file:
+     - .env
+    build:
+      context: ../backend
+      dockerfile: ./Dockerfile
+    image: vertx-client-server-backend
+    container_name: vertx-client-server-backend-app
+#    ports:
+#     - 8080:8080
+    networks:
+     - vertx-client-server-network
+  agent:
+    env_file:
+     - .env
+    build:
+      context: ../agent
+      dockerfile: ./Dockerfile
+    image: vertx-client-server-agent
+    container_name: vertx-client-server-agent-app
+#    ports:
+#     - 8080:8080
+    networks:
+     - vertx-client-server-network
+networks:
+  vertx-client-server-network:
